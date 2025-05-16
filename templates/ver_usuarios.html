@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuarios registrados</title>
+</head>
+<body>
+    <h1>Usuarios registrados</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Fecha</th>
+                <th>Tarjeta</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.nombre }}</td>
+                <td>{{ u.apellido }}</td>
+                <td>{{ u.correo }}</td>
+                <td>{{ u.telefono }}</td>
+                <td>{{ u.fecha }}</td>
+                <td>{{ u.tarjeta }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

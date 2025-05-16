@@ -89,6 +89,11 @@ if __name__ == '__main__':
 
 @app.route('/ver_usuarios')
 def ver_usuarios():
-    usuarios = Usuario.query.all()  # Trae todos los usuarios
+    archivo = os.path.join('data', 'datos_usuarios.csv')
+    if os.path.isfile(archivo):
+        df = pd.read_csv(archivo)
+        usuarios = df.to_dict(orient='records')
+    else:
+        usuarios = []
     return render_template('ver_usuarios.html', usuarios=usuarios)
 

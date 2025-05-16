@@ -8,8 +8,10 @@ import os
 app = Flask(__name__)
 
 # Configuración base de datos SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/usuarios.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/database.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 
 db = SQLAlchemy(app)

@@ -85,3 +85,10 @@ def sub1():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+@app.route('/ver_usuarios')
+def ver_usuarios():
+    usuarios = Usuario.query.all()  # Trae todos los usuarios
+    return render_template('ver_usuarios.html', usuarios=usuarios)
+

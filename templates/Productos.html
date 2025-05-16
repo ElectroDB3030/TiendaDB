@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos DB</title>
+    <link rel="stylesheet" href= "{{ url_for('static', filename='estilos.css')}}" type="text/css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagenes/icono.jpeg')}}"> <!-- Favicon -->
+</head>
+
+<body>
+    <div id="cuerpo"> <!-- pendiente cerrar </div> --> 
+    <header id="cabecera"> <img src="{{ url_for('static', filename='imagenes/Banner.png')}}" width="300" height="200" alt="Banner" class="banner-img"></header>
+    <nav id="menu"> <!--Este es el espacio del menú de navegación -->
+
+        <a href="{{ url_for('proyecto')}}" class="enlace_menu">Inicio</a>
+        <a href="{{ url_for('sub2')}}" class="enlace_menu">Servicios</a>
+        <a href="{{ url_for('sub3')}}" class="enlace_menu">Promociones</a>
+ 
+    </nav>
+
+    <h2>Tenemos para ti nuestras ventas semanales</h2>
+
+   <img src="{{ url_for('static', filename='imagenes/grafico_guardado.png') }}" alt="Gráfico de ventas">
+
+
+
+
+</body>
+</html>

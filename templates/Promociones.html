@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones DB</title>
+    <link rel="stylesheet" href= "{{ url_for('static', filename='estilos.css')}}" type="text/css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagenes/icono.jpeg')}}"> <!-- Favicon -->
+</head>
+<body>
+    <div id="cuerpo"> <!-- pendiente cerrar </div> --> 
+    <header id="cabecera"> <img src="{{ url_for('static', filename='imagenes/Banner.png')}}" width="300" height="200" alt="Banner" class="banner-img"></header>
+    <nav id="menu"> <!--Este es el espacio del menú de navegación -->
+
+        <a href="{{ url_for('proyecto')}}" class="enlace_menu">Inicio</a>
+        <a href="{{ url_for('sub1')}}" class="enlace_menu">Productos</a>
+        <a href="{{ url_for('sub2')}}" class="enlace_menu">Servicios</a>
+    </nav>
+    <h2>ESTA ES LA PAGINA DE PROMOCIONES</h2>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELECTRO DB</title>
+    <link rel="stylesheet" href= "{{ url_for('static', filename='estilos.css')}}" type="text/css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagenes/icono.jpeg')}}"> <!-- Favicon -->
+</head>
+<body>
+
+
+    <div id="cuerpo"> <!-- pendiente cerrar </div> --> 
+    <header id="cabecera"> <img src="{{ url_for('static', filename='imagenes/Banner.png')}}" width="300" height="200" alt="Banner" class="banner-img"></header>
+    <nav id="menu"> <!--Este es el espacio del menú de navegación -->
+
+        <a href="{{ url_for('sub1')}}" class="enlace_menu">Productos</a>
+        <a href="{{ url_for('sub2')}}" class="enlace_menu">Servicios</a>
+        <a href="{{ url_for('sub3')}}" class="enlace_menu">Promociones</a>
+
+        
+    </nav>
+
+    <section id="seccion"> <!--Este es el espacio de la sección-->
+
+        <article class="articulo">
+            <h2>Misión</h2>
+            <p>En Electro DB, nos dedicamos a ofrecer soluciones tecnológicas innovadoras, proporcionando proyectos personalizados, venta de componentes y reparación de dispositivos para mejorar la experiencia digital de nuestros clientes.</p>
+        </article>
+        
+        <article class="articulo">
+            <h2>Visión</h2>
+            <p>Ser la empresa líder en tecnología, brindando productos y servicios de calidad que impulsen la transformación digital, con un enfoque en la satisfacción del cliente y la innovación constante.</p>
+        </article>
+        
+        <article class="articulo">
+            <h2>Nuestros Servicios</h2>
+            <ul>
+                <li>Desarrollo de proyectos tecnológicos</li>
+                <li>Venta de componentes electrónicos</li>
+                <li>Reparación de computadoras y dispositivos</li>
+                <li>Soporte técnico y mantenimiento</li>
+            </ul>
+        </article>
+        
+    </section>
+
+<aside id="lateral"> <!--Este es el espacio de el fromulario-->
+    <h3>Registrate !!</h3>
+    <form name="formulario" method="POST" action="{{ url_for('grafico_interactivo') }}">
+        <table border="0">
+            <tr>
+                <td>Nombre:</td>
+                <td><input type="text" name="txtNombre" required></td>
+            </tr>
+            <tr>
+                <td>Apellido:</td>
+                <td><input type="text" name="txtApellido" required></td>
+            </tr>
+            <tr>
+                <td>Correo:</td>
+                <td><input type="email" name="miEmail" placeholder="Ingrese email" required></td>
+            </tr>
+            <tr>
+                <td>Teléfono:</td>
+                <td><input type="tel" name="telefono" placeholder="Ingrese teléfono" required></td>
+            </tr>
+            <tr>
+                <td>Fecha:</td>
+                <td><input type="date" name="fecha" required></td>
+            </tr>
+            <tr>
+                <td>Tarjeta Preferida:</td>
+                <td>
+                    <select name="tarjeta" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Arduino">Arduino</option>
+                        <option value="Raspberry Pi">Raspberry Pi</option>
+                        <option value="ESP8266 / ESP32">ESP8266 / ESP32</option>
+                        <option value="STM32 Nucleo">STM32 Nucleo</option>
+                        <option value="BeagleBone">BeagleBone</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="btnEnviar" value="Enviar"></td>
+            </tr>
+        </table>
+    </form>
+</aside>
+
+
+<div id="grafico-container" style="width: 80%; margin: 30px auto;">
+    <canvas id="graficoTarjetas"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('graficoTarjetas').getContext('2d');
+    const grafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels | tojson }},
+            datasets: [{
+                label: 'Preferencia de tarjetas',
+                data: {{ data | tojson }},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Número de personas'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tarjetas de programación'
+                        }
+                    }
+                }
+        }
+    });
+</script>
+
+
+
+    <footer id="pie"><h4>Empezamos como un sueño y hoy somos una realidad.</h4></footer>
+    
+</body>
+</html>

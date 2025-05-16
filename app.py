@@ -23,7 +23,7 @@ class Usuario(db.Model):
     fecha = db.Column(db.String(20))
     tarjeta = db.Column(db.String(50))
 
-# Crear base de datos (ejecutar solo una vez)
+# Crear base de datos
 with app.app_context():
     if not os.path.exists('data'):
         os.makedirs('data')
@@ -31,16 +31,13 @@ with app.app_context():
 
 @app.route('/', methods=["GET"])
 def proyecto():
-    # Mostrar resumen de tarjetas
     usuarios = Usuario.query.all()
     tarjetas = [u.tarjeta for u in usuarios]
     resumen = Counter(tarjetas)
     labels = list(resumen.keys())
     data = list(resumen.values())
-
     return render_template("sitio1.html", labels=labels, data=data)
 
-# Páginas secundarias
 @app.route("/Servicios")
 def sub2():
     return render_template("Servicios.html")
@@ -68,32 +65,23 @@ def grafico_interactivo():
     resumen = Counter(tarjetas)
     labels = list(resumen.keys())
     data = list(resumen.values())
-
     return render_template("sitio1.html", labels=labels, data=data)
 
 @app.route('/Productos')
 def sub1():
-    # Crear gráfico (ejemplo estático)
     fig, ax = plt.subplots()
     ax.plot([1, 2, 3, 4], [10, 20, 25, 30], marker='o')
     ax.set_title('Ventas del Mes')
     ax.set_xlabel('Semana')
     ax.set_ylabel('Ventas')
-
     plt.close(fig)
     return render_template('Productos.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
 @app.route('/ver_usuarios')
 def ver_usuarios():
-    archivo = os.path.join('data', 'datos_usuarios.csv')
-    if os.path.isfile(archivo):
-        df = pd.read_csv(archivo)
-        usuarios = df.to_dict(orient='records')
-    else:
-        usuarios = []
+    usuarios = Usuario.query.all()
     return render_template('ver_usuarios.html', usuarios=usuarios)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 

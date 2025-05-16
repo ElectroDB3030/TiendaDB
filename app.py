@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 # use Flask app.route decorador para mapear la ruta URL / a esa función
 
-@app.route('/TiendaDB/', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def proyecto():
     archivo = os.path.join('data', 'datos_usuarios.csv')
 
